@@ -12,7 +12,6 @@ const vermelho = document.querySelector('.vermelho')
 const verde = document.querySelector('.verde')
 const amarelo = document.querySelector('.amarelo')
 
-
 let ciraCorElemento = (cor) => {
 	if (cor == 0) {
 		return verde
@@ -31,7 +30,7 @@ let acendeCor = (elemento, number) => {
 		elemento.classList.add('selecionado')
 	}, tempo - 250)
 	setTimeout(() => {
-		elemento.classList.remove('elemento')
+		elemento.classList.remove('selecionado')
 	}, tempo)
 }
 
@@ -48,7 +47,6 @@ let ordemRodada = () => {
 let proximoNivel = () => {
 	pontos++
 	embaralhaCores()
-	
 }
 
 let perdeu = () => {
@@ -64,7 +62,14 @@ let perdeu = () => {
 	`
 	container_perdeu.innerHTML = conteudo_container_perdeu.trim()
 	document.querySelector('.container-genius').append(container_perdeu)
-} 
+}
+
+let reiniciaJogo = () => {
+	ordem = []
+	ordem_clicks = []
+	pontos = 0
+	iniciaJogo()
+}
 
 let verificaCor = () => {
 	for (let i in ordem_clicks) {

@@ -1,3 +1,7 @@
+:root {
+	--borda-padrao: 15px solid #000;
+}
+
 body {
 	margin: 0;
 	background-color: #001219;
@@ -12,35 +16,43 @@ body {
 	align-items: center;
 	height: 100vh;
 	width: 100vw;
+	background-color: black;
 }
 
 .container-genius {
 	display: grid;
 	grid-template-areas: "verde vermelho" "amarelo azul";
-	grid-gap: 6px;
+	grid-gap: 15px;
 	border: 1px solid white;
-	background-color: white;
+	background-color: black;
 	border-radius: 100%;
 	width: 600px;
 	height: 600px;
 }
 
+
 .azul {
 	grid-area: azul;
 	background-color: blue;
 	border-bottom-right-radius: 100%;
+	border-right: var(--borda-padrao);
+	border-bottom: var(--borda-padrao);
 }
 
 .verde {
 	grid-area: verde;
 	background-color: green;
 	border-top-left-radius: 100%;
+	border-top: var(--borda-padrao);
+	border-left: var(--borda-padrao);
 }
 
 .amarelo {
 	grid-area: amarelo;
 	background-color: yellow;
 	border-bottom-left-radius: 100%;
+	border-left: var(--borda-padrao);
+	border-bottom: var(--borda-padrao);
 }
 
 
@@ -48,6 +60,8 @@ body {
 	grid-area: vermelho;
 	background-color: red;
 	border-top-right-radius: 100%;
+	border-top: var(--borda-padrao);
+	border-right: var(--borda-padrao);
 }
 
 .container-nivel {
@@ -64,7 +78,7 @@ body {
 	position: absolute;
 	height: 250px;
 	width: 250px;
-	background-color: white;
+	background-color: black;
 	border-radius: 100%;
 }
 
