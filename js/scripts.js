@@ -12,6 +12,19 @@ const vermelho = document.querySelector('.vermelho')
 const verde = document.querySelector('.verde')
 const amarelo = document.querySelector('.amarelo')
 
+
+let ciraCorElemento = (cor) => {
+	if (cor == 0) {
+		return verde
+	} else if (cor  == 1) {
+		return vermelho
+	} else if (cor == 2) {
+		return amarelo
+	} else {
+		return azul
+	}
+}
+
 let acendeCor = (elemento, number) => {
 	let tempo = tempo * 500
 	setTimeout(() => {
@@ -32,6 +45,10 @@ let ordemRodada = () => {
 	}
 }
 
+let proximoNivel() {
+	
+}
+
 let verificaCor = () => {
 	for (let i in ordem_clicks) {
 		if (ordem_clicks[i] != ordem[i]) {
@@ -40,6 +57,16 @@ let verificaCor = () => {
 		}
 	}
 	if (ordem_clicks.length == ordem.length) {
-		alert(`Potuação ${}`)
+		document.querySelector('.pontuacao').innerText = pontos
+		proximoNivel()
 	}
+}
+
+let click = (cor) => {
+	ordem_clicks[ordem_clicks.length] = cor
+	cor_elemento[cor].classList.add('selecionado')
+	setTimeout(() => {
+		cor_elemento[cor].classList.remove('selecionado')
+	})
+	verificaOrdem()
 }
