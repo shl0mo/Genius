@@ -45,9 +45,25 @@ let ordemRodada = () => {
 	}
 }
 
-let proximoNivel() {
+let proximoNivel = () => {
+	pontos++
+	embaralhaCores()
 	
 }
+
+let perdeu = () => {
+	let container_perdeu = document.createElement('div')
+	container_perdeu.className = 'container-perdeu'
+	let label_perdeu = document.createElement('span')
+	label_perdeu.className = 'label-perdeu'
+	label_perdeu.innerText = 'Você perdeu o jogo'
+	container_perdeu.appendChild(label_perdeu)
+	let botao_reiniciar = document.createElement('button')
+	botao_reiniciar.className = 'reiniciar-jogo'
+	botao_reiniciar.innerText = 'Reiniciar o jogo'
+	container_perdeu.appendChild(botao_reiniciar)
+	document.querySelector('body').append(container_perdeu)
+} 
 
 let verificaCor = () => {
 	for (let i in ordem_clicks) {
