@@ -1,6 +1,7 @@
-let ordem = [];
-let ordem_clicks = [];
-let pontos = 0;
+var ordem = []
+var ordem_clicks = []
+var pontos = 0
+var nivel = 0
 
 //0 - verde
 //1 - vermelho
@@ -12,7 +13,7 @@ const vermelho = document.querySelector('.vermelho')
 const verde = document.querySelector('.verde')
 const amarelo = document.querySelector('.amarelo')
 
-let ciraCorElemento = (cor) => {
+const corElemento = (cor) => {
 	if (cor == 0) {
 		return verde
 	} else if (cor  == 1) {
@@ -24,32 +25,41 @@ let ciraCorElemento = (cor) => {
 	}
 }
 
-let acendeCor = (elemento, number) => {
-	let tempo = tempo * 500
+const acendeCor = (elemento, number) => {
+	number = number * 500
 	setTimeout(() => {
 		elemento.classList.add('selecionado')
 	}, tempo - 250)
 	setTimeout(() => {
 		elemento.classList.remove('selecionado')
-	}, tempo)
+	})
 }
 
-let ordemRodada = () => {
-	let cor = Math.floor(Math.random * 4)
+const defineOrdem = () => {
+	let cor = Math.floor(Math.random() * 4)
 	ordem[ordem.length] = cor
 	ordem_clicks = []
 	for (let i in ordem) {
-		let cor_elemento = criaCorElemento(ordem[i])
-		acendeCor(cor_elemento, Number[i] + 1)
+		let cor_elemento = corElemento(ordem[i])
+		acendeCor(cor_elemento, Number(i) + 1)
 	}
 }
 
-let proximoNivel = () => {
+
+const proximoNivel = () => {
 	pontos++
-	embaralhaCores()
+	document.querySelector('.pontuacao').innerText = pontos
+	nivel++
+	document.querySelector('.nivel').innerText = nivel
+	defineOrdem()
 }
 
-let perdeu = () => {
+const iniciaJogo = () => {
+	pontos = 0
+	proximoNivel()
+}
+
+const perdeu = () => {
 	let container_perdeu = document.createElement('div')
 	container_perdeu.className = 'container-perdeu'
 	let conteudo_container_perdeu = `
@@ -64,14 +74,14 @@ let perdeu = () => {
 	document.querySelector('.container-genius').append(container_perdeu)
 }
 
-let reiniciaJogo = () => {
+const reiniciaJogo = () => {
 	ordem = []
 	ordem_clicks = []
 	pontos = 0
 	iniciaJogo()
 }
 
-let verificaCor = () => {
+const verificaOrdem = () => {
 	for (let i in ordem_clicks) {
 		if (ordem_clicks[i] != ordem[i]) {
 			perdeu()
@@ -84,11 +94,11 @@ let verificaCor = () => {
 	}
 }
 
-let click = (cor) => {
+const click = (cor) => {
 	ordem_clicks[ordem_clicks.length] = cor
-	cor_elemento[cor].classList.add('selecionado')
+	corElemento(cor).classList.add('selecionado')
 	setTimeout(() => {
-		cor_elemento[cor].classList.remove('selecionado')
+		corELemento(cor).classList.remove('selecionado')
+		verificaOrdem()
 	})
-	verificaOrdem()
 }

@@ -2,6 +2,11 @@
 	--borda-padrao: 15px solid #000;
 }
 
+@font-face {
+	font-family: "VCR OSD MONO";
+	src: url('VCR_OSD_MONO.ttf') format('opentype');
+}
+
 body {
 	margin: 0;
 	background-color: #001219;
@@ -75,10 +80,16 @@ body {
 	display: flex;
 	align-self: center;
 	justify-self: center;
+	align-items: center;
+	text-align: center;
+	font-size: 3em;
+	font-weight: bold;
+	font-family: "VCR OSD MONO";
 	position: absolute;
 	height: 250px;
 	width: 250px;
 	background-color: black;
+	color: white;
 	border-radius: 100%;
 }
 
