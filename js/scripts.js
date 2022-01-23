@@ -34,9 +34,12 @@ let ordemRodada = () => {
 
 let verificaCor = () => {
 	for (let i in ordem_clicks) {
-		if (ordem_clicks[i] ! == ordem[i]) {
+		if (ordem_clicks[i] != ordem[i]) {
 			perdeu()
 			break
 		}
+	}
+	if (ordem_clicks.length == ordem.length) {
+		alert(`Potuação ${}`)
 	}
 }

@@ -5,6 +5,8 @@ body {
 
 .main-genius {
 	display: flex;
+	gap: 40px;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	height: 100vh;
@@ -18,15 +20,14 @@ body {
 	border: 1px solid white;
 	background-color: white;
 	border-radius: 100%;
-	width: 700px;
-	height: 700px;
+	width: 600px;
+	height: 600px;
 }
 
 .azul {
 	grid-area: azul;
 	background-color: blue;
 	border-bottom-right-radius: 100%;
-
 }
 
 .verde {
@@ -48,6 +49,40 @@ body {
 	border-top-right-radius: 100%;
 }
 
+.circulo {
+	display: flex;
+	align-self: center;
+	justify-self: center;
+	position: absolute;
+	height: 250px;
+	width: 250px;
+	background-color: white;
+	border-radius: 100%;
+}
+
+.container-pontuacao {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+	height: 230px;
+	width: 350px;
+	background-color: white;
+	border-radius: 2rem;
+}
+
+.label-pontuacao {
+	font-family: sans-serif;
+	font-size: 2em;
+	font-weight: bold;
+	margin-top: 20px;
+}
+
 .selectionado {
 	opacity: 0.8;
 }
+
+.pointer {
+	cursor: pointer;	
+}
+
