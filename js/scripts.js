@@ -49,32 +49,45 @@ const proximoNivel = () => {
 }
 
 const iniciaJogo = () => {
-	pontos = 0
-	iniciou = true
-	document.querySelector('.circulo').children[0].remove()
-	defineOrdem()
+	if (!iniciou) {
+		pontos = 0
+		nivel = 0
+		iniciou = true
+		perdeu = false
+		if (document.querySelector('.circulo').children.length > 0) {
+			document.querySelector('.circulo').children[0].remove()
+		}
+		defineOrdem()
+	}
 }
 
 const gameOver = () => {
 	perdeu = true
-	let container_perdeu = document.createElement('div')
-	container_perdeu.className = 'container-perdeu'
-	let conteudo_container_perdeu = `
-		<div class="box-label-perdeu">
-			<span class="label-perdeu">VOCÊ PERDEU</span>
-		</div>
-		<div class="box-botao-reiniciar">
-			<button class="botao-reiniciar">Reiniciar o jogo</button>
-		</div>
-	`
-	container_perdeu.innerHTML = conteudo_container_perdeu.trim()
-	document.querySelector('.container-genius').append(container_perdeu)
+	if (!document.contains(document.querySelector('.container-perdeu'))) {
+		let container_perdeu = document.createElement('div')
+		container_perdeu.className = 'container-perdeu'
+		let conteudo_container_perdeu = `
+			<div class="box-label-perdeu">
+				<span class="label-perdeu">VOCÊ PERDEU</span>
+			</div>
+			<div class="box-botao-reiniciar">
+				<button class="botao-reiniciar" onclick="reiniciaJogo()">Reiniciar o jogo</button>
+			</div>
+		`
+		container_perdeu.innerHTML = conteudo_container_perdeu.trim()
+		document.querySelector('.container-genius').append(container_perdeu)
+	}
 }
 
 const reiniciaJogo = () => {
 	ordem = []
 	ordem_clicks = []
 	pontos = 0
+	nivel = 0
+	document.querySelector('.pontuacao').innerText = pontos
+	document.querySelector('.nivel').innerText = nivel
+	document.querySelector('.container-perdeu').remove()
+	iniciou = false
 	iniciaJogo()
 }
 

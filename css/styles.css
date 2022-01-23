@@ -164,3 +164,19 @@ body {
 .botao-reiniciar:hover {
 	opacity: 0.5;
 }
+
+.circunferencia {
+	display: flex;
+	align-self: center;
+	justify-self: center;
+	position: absolute;
+	background-color: none;
+	height: 570px;
+	width: 570px;
+	border-radius: 100%;
+	border: 15px solid black;
+}
+
+.z-9 {
+	z-index: 9;	
+}
