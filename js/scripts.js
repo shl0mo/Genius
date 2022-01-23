@@ -2,37 +2,28 @@ var ordem = []
 var ordem_clicks = []
 var pontos = 0
 var nivel = 0
-
-//0 - verde
-//1 - vermelho
-//2 - amarelo
-//3 - azul
-
-const azul = document.querySelector('.azul')
-const vermelho = document.querySelector('.vermelho')
-const verde = document.querySelector('.verde')
-const amarelo = document.querySelector('.amarelo')
+var iniciou = false
 
 const corElemento = (cor) => {
 	if (cor == 0) {
-		return verde
+		return document.querySelector('.verde')
 	} else if (cor  == 1) {
-		return vermelho
+		return document.querySelector('.vermelho')
 	} else if (cor == 2) {
-		return amarelo
+		return document.querySelector('.amarelo')
 	} else {
-		return azul
+		return document.querySelector('.azul')
 	}
 }
 
-const acendeCor = (elemento, number) => {
-	number = number * 500
+const acendeCor = (elemento, tempo) => {
+	tempo = tempo * 500
 	setTimeout(() => {
 		elemento.classList.add('selecionado')
 	}, tempo - 250)
 	setTimeout(() => {
 		elemento.classList.remove('selecionado')
-	})
+	}, tempo)
 }
 
 const defineOrdem = () => {
@@ -56,7 +47,8 @@ const proximoNivel = () => {
 
 const iniciaJogo = () => {
 	pontos = 0
-	proximoNivel()
+	iniciou = true
+	defineOrdem()
 }
 
 const perdeu = () => {
@@ -94,11 +86,31 @@ const verificaOrdem = () => {
 	}
 }
 
-const click = (cor) => {
-	ordem_clicks[ordem_clicks.length] = cor
-	corElemento(cor).classList.add('selecionado')
-	setTimeout(() => {
-		corELemento(cor).classList.remove('selecionado')
-		verificaOrdem()
-	})
-}
+let intervalo = setInterval(() => {
+	console.log('intervalo')
+	const click = (cor, tempo) => {
+		console.log('clicado')
+		tempo = tempo * 500
+		ordem_clicks[ordem_clicks.length] = cor
+		corElemento(cor).classList.add('selecionado')
+		setTimeout(() => {
+			corElemento(cor).classList.remove('selecionado')
+			verificaOrdem()
+		}, tempo - 250)
+	}
+	if (document.contains(document.querySelector('.azul')) && iniciou) {
+		document.getElementsByClassName('verde')[0].addEventListener('click', () => click(0), false)	
+		document.getElementsByClassName('vermelho')[0].addEventListener('click', () => click(1), false)
+		document.getElementsByClassName('amarelo')[0].addEventListener('click', () => click(2), false)
+		document.getElementsByClassName('azul')[0].addEventListener('click', () => click(3), false)
+		clearInterval(intervalo)
+	}
+}, 500)
+
+
+intervalo
+
+
+
+
+
