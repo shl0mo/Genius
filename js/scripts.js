@@ -3,6 +3,7 @@ var ordem_clicks = []
 var pontos = 0
 var nivel = 0
 var iniciou = false
+var perdeu = false
 
 const corElemento = (cor) => {
 	if (cor == 0) {
@@ -38,28 +39,32 @@ const defineOrdem = () => {
 
 
 const proximoNivel = () => {
-	pontos++
-	document.querySelector('.pontuacao').innerText = pontos
-	nivel++
-	document.querySelector('.nivel').innerText = nivel
-	defineOrdem()
+	if (!perdeu) {
+		pontos = pontos + 10
+		document.querySelector('.pontuacao').innerText = pontos
+		nivel++
+		document.querySelector('.nivel').innerText = nivel
+		defineOrdem()
+	}
 }
 
 const iniciaJogo = () => {
 	pontos = 0
 	iniciou = true
+	document.querySelector('.circulo').children[0].remove()
 	defineOrdem()
 }
 
-const perdeu = () => {
+const gameOver = () => {
+	perdeu = true
 	let container_perdeu = document.createElement('div')
 	container_perdeu.className = 'container-perdeu'
 	let conteudo_container_perdeu = `
 		<div class="box-label-perdeu">
-			<span class="label-perdeu">Você perdeu</span>
+			<span class="label-perdeu">VOCÊ PERDEU</span>
 		</div>
 		<div class="box-botao-reiniciar">
-			<button class="botaoReiniciar">Reiniciar o jogo</button>
+			<button class="botao-reiniciar">Reiniciar o jogo</button>
 		</div>
 	`
 	container_perdeu.innerHTML = conteudo_container_perdeu.trim()
@@ -76,7 +81,7 @@ const reiniciaJogo = () => {
 const verificaOrdem = () => {
 	for (let i in ordem_clicks) {
 		if (ordem_clicks[i] != ordem[i]) {
-			perdeu()
+			gameOver()
 			break
 		}
 	}
@@ -98,7 +103,7 @@ let intervalo = setInterval(() => {
 			verificaOrdem()
 		}, tempo - 250)
 	}
-	if (document.contains(document.querySelector('.azul')) && iniciou) {
+	if (document.contains(document.querySelector('.azul')) && iniciou) { 
 		document.getElementsByClassName('verde')[0].addEventListener('click', () => click(0), false)	
 		document.getElementsByClassName('vermelho')[0].addEventListener('click', () => click(1), false)
 		document.getElementsByClassName('amarelo')[0].addEventListener('click', () => click(2), false)

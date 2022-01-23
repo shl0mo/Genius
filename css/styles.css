@@ -124,6 +124,11 @@ body {
 	cursor: pointer;	
 }
 
+@keyframes expande {
+	from { height: 20px; }
+	to { height: 200px;}
+}
+
 .container-perdeu {
 	position: absolute;
 	display: flex;
@@ -132,10 +137,30 @@ body {
         justify-self: center;
 	align-items: center;
 	justify-content: center;
+	font-family: "VCR OSD MONO";
+	font-size: 3em;
 	height: 200px;
 	width: 700px;
+	animation-name: expande;
+	animation-duration: 200ms;
 	background-color: white;
 	border-radius: 2rem;
 	border: 1px solid black;
+	z-index: 11;
 
+}
+
+.botao-reiniciar {
+	background-color: blue;
+	color: white;
+	padding: 10px 20px;
+	font-size: 0.5em;
+	border: none;
+	border-radius: 5px;
+	margin-top: 10px;
+	cursor: pointer;
+}
+
+.botao-reiniciar:hover {
+	opacity: 0.5;
 }
