@@ -98,3 +98,18 @@ body {
 	cursor: pointer;	
 }
 
+.container-perdeu {
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+	align-self: center;
+        justify-self: center;
+	align-items: center;
+	justify-content: center;
+	height: 200px;
+	width: 700px;
+	background-color: white;
+	border-radius: 2rem;
+	border: 1px solid black;
+
+}

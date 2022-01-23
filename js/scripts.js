@@ -54,15 +54,16 @@ let proximoNivel = () => {
 let perdeu = () => {
 	let container_perdeu = document.createElement('div')
 	container_perdeu.className = 'container-perdeu'
-	let label_perdeu = document.createElement('span')
-	label_perdeu.className = 'label-perdeu'
-	label_perdeu.innerText = 'Você perdeu o jogo'
-	container_perdeu.appendChild(label_perdeu)
-	let botao_reiniciar = document.createElement('button')
-	botao_reiniciar.className = 'reiniciar-jogo'
-	botao_reiniciar.innerText = 'Reiniciar o jogo'
-	container_perdeu.appendChild(botao_reiniciar)
-	document.querySelector('body').append(container_perdeu)
+	let conteudo_container_perdeu = `
+		<div class="box-label-perdeu">
+			<span class="label-perdeu">Você perdeu</span>
+		</div>
+		<div class="box-botao-reiniciar">
+			<button class="botaoReiniciar">Reiniciar o jogo</button>
+		</div>
+	`
+	container_perdeu.innerHTML = conteudo_container_perdeu.trim()
+	document.querySelector('.container-genius').append(container_perdeu)
 } 
 
 let verificaCor = () => {
